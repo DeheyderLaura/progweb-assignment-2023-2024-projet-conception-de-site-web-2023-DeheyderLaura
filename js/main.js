@@ -1,96 +1,99 @@
+let playerName, playerSurname, currentLevel, currentPoints;
 let cards = [];
 let flippedCards = [];
 let matchedCards = [];
-let username = '';
-let currentLevel = 1;
-const maxLevel = 10;
+let isFlipping = false;
 
-function createCards(rows, cols) {
-  const gameBoard = document.getElementById('game-board');
-  gameBoard.innerHTML = '';
+function startGame() {
+    playerName = document.getElementById('name').value;
+    playerSurname = document.getElementById('surname').value;
+    currentLevel = parseInt(document.getElementById('level').value);
+    currentPoints = 0;
 
-  for (let i = 0; i < rows * cols; i++) {
-    const card = document.createElement('div');
-    card.className = 'card col-3 col-md-2';
-    card.dataset.cardIndex = i;
-    card.addEventListener('click', flipCard);
-    
-    const image = document.createElement('img');
-    image.src = 'path_to_your_image'; // Chemin vers l'image
-    card.appendChild(image);
-    
-    cards.push(card);
-    gameBoard.appendChild(card);
-  }
+    document.getElementById('start-form').style.display = 'none';
+
+    generateCards();
+    displayLevel();
+    renderGameBoard();
 }
 
-function flipCard() {
-  if (flippedCards.length < 2 && !flippedCards.includes(this) && !matchedCards.includes(this)) {
-    this.classList.add('flipped');
-    flippedCards.push(this);
+function generateCards() {
+    cards = [];
+    for (let i = 1; i <= currentLevel * 2; i++) {
+        cards.push({ value: i, isFlipped: false });
+        cards.push({ value: i, isFlipped: false });
+    }
+    shuffle(cards);
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function renderGameBoard() {
+    const gameBoard = document.getElementById('game-board');
+    gameBoard.innerHTML = '';
+    cards.forEach((card, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card', card.isFlipped ? 'hidden' : 'visible');
+        cardElement.classList.add('background');
+        cardElement.textContent = card.isFlipped ? card.value : '';
+        cardElement.addEventListener('click', () => flipCard(index));
+        gameBoard.appendChild(cardElement);
+    });
+}
+
+function flipCard(index) {
+    if (isFlipping || flippedCards.length >= 2 || cards[index].isFlipped) {
+        return;
+    }
+
+    cards[index].isFlipped = true;
+    flippedCards.push(index);
+    renderGameBoard();
 
     if (flippedCards.length === 2) {
-      setTimeout(checkMatch, 1000);
+        isFlipping = true;
+        setTimeout(checkMatch, 1000);
     }
-  }
 }
 
 function checkMatch() {
-  const [card1, card2] = flippedCards;
-  const index1 = card1.dataset.cardIndex;
-  const index2 = card2.dataset.cardIndex;
-
-  if (index1 !== index2 && card1.innerHTML === card2.innerHTML) {
-    matchedCards.push(card1, card2);
-    if (matchedCards.length === cards.length) {
-      setTimeout(nextLevel, 1000);
+    const [index1, index2] = flippedCards;
+    if (cards[index1].value === cards[index2].value) {
+        matchedCards.push(index1, index2);
+        currentPoints += 10;
+        if (currentLevel >=  10) {
+            showCongratulations();
+        } else if(matchedCards.length === cards.length) {
+            nextLevel();
+        }
+    } else {
+        cards[index1].isFlipped = false;
+        cards[index2].isFlipped = false;
     }
-  } else {
-    card1.classList.remove('flipped');
-    card2.classList.remove('flipped');
-  }
-
-  flippedCards = [];
+    flippedCards = [];
+    isFlipping = false;
+    renderGameBoard();
 }
 
-function nextLevel() {
-  currentLevel++;
-  if (currentLevel <= maxLevel) {
-    const level = calculateLevel();
-    createCards(level.rows, level.cols);
-  } else {
-    const gameBoard = document.getElementById('game-board');
-    gameBoard.innerHTML = '<h2>Partie finie !</h2>';
-    const nextLevelPrompt = confirm('Voulez-vous passer au niveau suivant ?');
-    if (nextLevelPrompt) {
-      currentLevel = 1;
-      const level = calculateLevel();
-      createCards(level.rows, level.cols);
-    }
-  }
+function nextLevel() 
+{
+    currentLevel++;
+    generateCards();
+    displayLevel();
+    renderGameBoard();
+    matchedCards = [];
 }
 
-function checkLevelCompletion() {
-  if (matchedCards.length === cards.length) {
-    setTimeout(nextLevel, 1000);
-  }
+function displayLevel() {
+    document.getElementById('level-display').textContent = `Joueur: ${playerName} ${playerSurname} - Niveau ${currentLevel} - Points: ${currentPoints}`;
 }
 
-document.getElementById('user-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  username = document.getElementById('username').value;
-  const level = calculateLevel();
-  createCards(level.rows, level.cols);
-});
-
-function calculateLevel() {
-    // Définition des dimensions initiales du plateau de jeu
-    let rows = 2 + Math.floor((currentLevel - 1) / 2); // Augmente d'une ligne à chaque deux niveaux
-    let cols = 2 + Math.floor((currentLevel - 1) / 2); // Augmente d'une colonne à chaque deux niveaux
-  
-    // Limiter le nombre de lignes et de colonnes à un maximum de 6x6
-    rows = Math.min(rows, 6);
-    cols = Math.min(cols, 6);
-  
-    return { rows, cols };
-  }
+function showCongratulations() {
+    alert(`Félicitations, ${playerName} ${playerSurname} ! Vous avez terminé tous les niveaux avec ${currentPoints} points.`);
+    location.reload();
+}

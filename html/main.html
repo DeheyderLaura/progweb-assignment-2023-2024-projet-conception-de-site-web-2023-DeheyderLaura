@@ -1,25 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
-    <title>Jeu de mémoire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
-    </head>
-    <body>
-    <div class="container">
+    <title>Jeu de Mémoire</title>
+</head>
+<body>
+    <header>
         <h1>Jeu de Mémoire</h1>
-        <div id="game-board" class="row"></div>
-        <form id="user-form">
-        <label for="username">Entrez votre nom : </label>
-        <input type="text" id="username" name="username">
-        <button type="submit" class="btn btn-primary">Commencer</button>
-        </form>
-    </div>
+    </header>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../js/main.js"></script>
-    </body>
+    <main>
+        <section id="start-form">
+            <form>
+                <label for="name">Nom:</label>
+                <input type="text" id="name" required>
+                <label for="surname">Prénom:</label>
+                <input type="text" id="surname" required>
+                <label for="level">Niveau:</label>
+                <input type="number" id="level" min="1" max="10" required>
+                <button type="submit" onclick="startGame()">Commencer</button>
+            </form>
+<section id="game-instructions">
+    <h2>Comment Jouer</h2>
+    <p>Bienvenue sur votre jeu de mémoire ! Suivez ces étapes pour jouer :</p>
+    <ol>
+        <li>Remplissez le formulaire avec votre nom, prénom et choisissez un niveau.</li>
+        <li>Cliquez sur le bouton "Commencer" pour lancer le jeu.</li>
+        <li>Retournez les cartes en cliquant dessus pour trouver les paires.</li>
+        <li>Chaque niveau ajoute une paire de cartes.</li>
+        <li>Réussissez tous les niveaux pour terminer le jeu.</li>
+        <li> Et sutout, amusez-vous !!</li>
+    </ol>
+</section>
+
+        </section>
+
+        <section id="game-board"></section>
+        <section id="level-display"></section>
+    </main>
+
+    <footer>
+        <script src="../js/main.js"></script>
+    </footer>
+</body>
 </html>
