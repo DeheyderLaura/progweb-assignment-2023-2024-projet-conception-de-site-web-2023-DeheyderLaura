@@ -19,7 +19,9 @@ function startGame() {
 
 function generateCards() {
     cards = [];
-    for (let i = 1; i <= currentLevel * 2; i++) {
+    currentLevel = currentLevel === 1 || currentLevel === 0  ? currentLevel * 2 : currentLevel;
+    
+    for (let i = 1; i <= currentLevel; i++) {
         cards.push({ value: i, isFlipped: false });
         cards.push({ value: i, isFlipped: false });
     }
@@ -66,10 +68,12 @@ function checkMatch() {
     if (cards[index1].value === cards[index2].value) {
         matchedCards.push(index1, index2);
         currentPoints += 10;
-        if (currentLevel >=  10) {
-            showCongratulations();
-        } else if(matchedCards.length === cards.length) {
-            nextLevel();
+        if(matchedCards.length === cards.length){
+            if (currentLevel >=  10) {
+                showCongratulations();
+            } else {
+                nextLevel();
+            }
         }
     } else {
         cards[index1].isFlipped = false;

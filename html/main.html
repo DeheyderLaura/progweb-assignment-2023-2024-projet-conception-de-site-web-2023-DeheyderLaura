@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>Jeu de Mémoire</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/styles.css">
+        <title>Jeu de Mémoire</title>
+    </head>
+    <body>
+        <header>
+            <h1>Jeu de Mémoire</h1>
+        </header>
 
-<body>
-    <header>
-        <h1>Jeu de Mémoire</h1>
-    </header>
+        <div class="main">
+            <section id="start-form">
+                <form>
+                    <label for="name">Nom:</label>
+                    <input type="text" id="name" required>
+                    <label for="surname">Prénom:</label>
+                    <input type="text" id="surname" required>
+                    <label for="level">Niveau:</label>
+                    <input type="number" id="level" min="1" max="10" required>
+                    <button type="button" onclick="startGame()">Commencer</button>
+                </form>
+                <section id="game-instructions">
+                    <h2>Comment Jouer</h2>
+                    <p>Bienvenue sur votre jeu de mémoire ! Suivez ces étapes pour jouer :</p>
+                    <ol>
+                        <li>Remplissez le formulaire avec votre nom, prénom et choisissez un niveau.</li>
+                        <li>Cliquez sur le bouton "Commencer" pour lancer le jeu.</li>
+                        <li>Retournez les cartes en cliquant dessus pour trouver les paires.</li>
+                        <li>Chaque niveau ajoute une paire de cartes.</li>
+                        <li>Réussissez tous les niveaux pour terminer le jeu.</li>
+                        <li> Et surtout, amusez-vous !!</li>
+                    </ol>
+                </section>
+            </section>
 
-    <main>
-        <section id="start-form">
-            <form>
-                <label for="name">Nom:</label>
-                <input type="text" id="name" required>
-                <label for="surname">Prénom:</label>
-                <input type="text" id="surname" required>
-                <label for="level">Niveau:</label>
-                <input type="number" id="level" min="1" max="10" required>
-                <button type="button" onclick="startGame()">Commencer</button>
-            </form>
-<section id="game-instructions">
-    <h2>Comment Jouer</h2>
-    <p>Bienvenue sur votre jeu de mémoire ! Suivez ces étapes pour jouer :</p>
-    <ol>
-        <li>Remplissez le formulaire avec votre nom, prénom et choisissez un niveau.</li>
-        <li>Cliquez sur le bouton "Commencer" pour lancer le jeu.</li>
-        <li>Retournez les cartes en cliquant dessus pour trouver les paires.</li>
-        <li>Chaque niveau ajoute une paire de cartes.</li>
-        <li>Réussissez tous les niveaux pour terminer le jeu.</li>
-        <li> Et sutout, amusez-vous !!</li>
-    </ol>
-</section>
-
-        </section>
-
-        <section id="game-board"></section>
-        <section id="level-display"></section>
-    </main>
-
-    <footer>
-        <script src="../js/main.js"></script>
-    </footer>
-</body>
+            <section id="game-board"></section>
+            <section id="level-display"></section>
+        </div>
+        <footer>
+            <script src="../js/main.js"></script>
+        </footer>
+    </body>
 </html>

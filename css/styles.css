@@ -1,18 +1,20 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'times new roman', sans-serif;
     text-align: center;
     margin: 0;
     background-color: #bef0ed;
   }
   
-  header {
+  header 
+  {
     background-color: #0793b3ea;
     color: white;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  main {
+  .main 
+  {
     padding: 20px;
   }
   
@@ -34,6 +36,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     font-size: 16px;
+    font-family: 'times new roman', sans-serif;
   }
   
   #game-board {
@@ -59,7 +62,7 @@ body {
     cursor: pointer;
     user-select: none;
     transition: transform 0.3s ease-in-out;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 2px solid #000000;
   }
   
@@ -85,7 +88,7 @@ body {
   }
   
   .background {
-    background-color: coral;
+    background-color: rgb(245, 135, 71);
     transition: background-color 0.3s ease-in-out;
   }
   
@@ -96,7 +99,7 @@ body {
   }
   
   #game-instructions {
-    background-color: #f9f9f9;
+    background-color: #fbf0ea;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
