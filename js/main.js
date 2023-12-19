@@ -20,7 +20,7 @@ let cards = [];
  */
 let flippedCards = [];
 /**
- * Represents les cartes matchées
+ * Represents les cartes matchées.
  * @type {number[]}
  */
 let matchedCards = [];
@@ -30,7 +30,7 @@ let matchedCards = [];
  */
 let isFlipping = false;
 /**
- * Initialise le jeu et affiche le formulaire
+ * Initialise le jeu et affiche le formulaire.
  */
 function startGame() 
 { 
@@ -55,8 +55,8 @@ function startGame()
     document.getElementById('start-form').style.display = 'none';
  
     /**
-     * Genère les cartes pour le jeu
-     * Affiche les informations du niveau actuel
+     * Genère les cartes pour le jeu.
+     * Affiche les informations du niveau actuel.
      * initialise le plateau de jeu.
      */
     generateCards();
