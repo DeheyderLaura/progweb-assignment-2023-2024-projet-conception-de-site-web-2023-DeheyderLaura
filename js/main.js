@@ -252,7 +252,7 @@ function showCongratulations() {
     congratulationDiv.innerHTML = `
         <div class="congratulations-header">Félicitations, ${playerName} ${playerSurname} !</div>
         <div class="congratulations-body">
-            Vous avez brillamment terminé tous les niveaux avec ${currentPoints} points.
+            Tu as terminé tous les niveaux avec ${currentPoints} points.
         </div>
         <div class="congratulations-footer">Rechargez la page pour jouer à nouveau.</div>
     `;
