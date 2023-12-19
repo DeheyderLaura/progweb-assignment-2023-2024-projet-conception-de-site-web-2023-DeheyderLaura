@@ -2,12 +2,12 @@ body {
     font-family: 'times new roman', sans-serif;
     text-align: center;
     margin: 0;
-    background-color: #bef0ed;
+    background-color: #d4f5f2;
   }
   
   header 
   {
-    background-color: #0793b3ea;
+    background-color: #0577a5;
     color: white;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,7 @@ body {
   .main 
   {
     padding: 20px;
+    background-color: #c5e7e4;
   }
   
   #start-form {
@@ -30,6 +31,7 @@ body {
   
   label {
     margin: 5px;
+    color: #03414a;
   }
   
   button {
@@ -54,7 +56,7 @@ body {
     width: 100px;
     height: 150px;
     margin: 10px;
-    background-color: #75d1ef;
+    background-color: #9dd5e3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,13 +81,6 @@ body {
     margin-top: 20px;
   }
   
-  #game-board.level-up {
-    background-color: #d8ea38;
-  }
-  
-  .background.level-up {
-    background-color: #914507;
-  }
   
   .background {
     background-color: rgb(245, 135, 71);
@@ -124,7 +119,7 @@ body {
     margin-bottom: 10px;
   }
   .congratulations-message {
-    background-color:#0793b3ea;
+    background-color:#ffcc99;
     color: #050606;
     border: #000000 solid 2px;
     padding: 20px;
